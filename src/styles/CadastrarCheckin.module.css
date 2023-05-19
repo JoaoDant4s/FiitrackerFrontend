@@ -1,0 +1,19 @@
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2C3E50;
+    padding: 50px;
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.card > h1 {
+    color: white;
+}
+
+.container_list {
+    max-height: 400px;
+    overflow: auto;
+}

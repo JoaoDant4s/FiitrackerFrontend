@@ -1,0 +1,20 @@
+
+
+.container_produto{
+    display: flex;
+    width: 100%;
+    background-color: gray;
+    margin-bottom: 25px;
+}
+
+.container_produto > img{
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+
+.nome_desc {
+    display: flex;
+    flex-direction: column;
+}
+

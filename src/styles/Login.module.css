@@ -1,0 +1,53 @@
+.container_page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #DDD;
+    min-height: 100vh;
+}
+
+.card {
+    background-color: #FFF;
+    display: flex;
+    min-height: 500px;
+    min-width: 60%;
+    border-radius: 10px;
+}
+
+.image {
+    display: flex;
+    margin-left: 30px;
+    background-image: url(../assets/images/login.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    width: 50%;
+}
+
+.input_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.title_logo{
+    margin-bottom: 30px;
+}
+
+.input_block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 65%;
+}
+
+.input {
+    height: 30px;
+    min-width: 100px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}

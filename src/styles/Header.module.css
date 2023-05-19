@@ -1,0 +1,42 @@
+
+.header{
+    background-color: #2C3E50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    height: 58px;
+}
+
+.logo{
+    color: #E5EDF1;
+    cursor: pointer;
+}
+
+.container_avatar {
+    display: flex;
+    align-items: center;
+}
+
+.container_avatar > h2 {
+    display: flex;
+    align-items: center;
+    color: #E5EDF1;
+    margin-right: 30px;
+}
+
+.avatar {
+    background-color: #E5EDF1;
+    border-radius: 50%;
+}
+.avatar > h2 {
+    padding: 15px;
+}
+
+.coin{
+    color: #E5EDF1;
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+}
+
