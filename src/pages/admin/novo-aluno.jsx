@@ -17,25 +17,39 @@ export const NovoAluno = () => {
         e.preventDefault()
         const data = {
             nomeCompleto: nome,
-            dataNascimento: "29-12-2001",
+            dataNascimento,
             cpf,
-            telefone
+            telefone,
+            email,
+            senha,
         }
-        console.log(data)
-        await fetch("http://localhost:8080/people", {
+        let responseAluno = await fetch("http://localhost:3000/api/aluno", {
             method: 'POST',
-            headers : {
+            headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then(res => {
-            if(res.status === 201){
-                console.log(res.body)
-            }
-            console.log(res) 
-        }).catch(err => {
-            console.log("Mensagem de erro retornada: ", err)
         })
+        responseAluno = await responseAluno.json()
+        let responseUsuario = await fetch("http://localhost:3000/api/usuario", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: data.email,
+                senha: data.senha,
+                aluno: responseAluno.aluno,
+                role: 'user',
+                pontos: 0,
+                multiplicador: 1.0,
+                foto,
+                historicoRecompensas: []
+            })
+        })
+        responseUsuario = await responseUsuario.json()
+        console.log(responseAluno)
+        console.log(responseUsuario)
     }
     
     return(
