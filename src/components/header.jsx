@@ -3,10 +3,12 @@ import { router } from 'next/router';
 import styles from '../styles/Header.module.css'
 import { RiCopperCoinLine } from 'react-icons/ri'
 import { signOut } from 'next-auth/react';
+import { createInitials } from '@/helpers/createInitials';
 
-export const HeaderNav = ({isAdmin, session}) => {
+export const HeaderNav = ({user}) => {
+    console.log(user?.image)
     const handleNavigate = () => {
-        if(isAdmin){
+        if(user.role === "admin"){
             router.push(`/admin`)
         } else {
             router.push(`/home`)
@@ -15,15 +17,15 @@ export const HeaderNav = ({isAdmin, session}) => {
     return(
         <div className={styles.header}>
             <h1 onClick={() => handleNavigate()} className={styles.logo}>FitTracker</h1>
-            {!isAdmin && 
+            {user?.role === "user" && 
             <div className={styles.container_avatar}>
                 <RiCopperCoinLine className={styles.coin}/>
-                <h2>200</h2>
+                <h2>{user.pontos}</h2>
                 <div className={styles.dropdown}>
-                    {session?.user?.image ?
-                    <img src={session.user.image} alt="Imagem do usuário" className={styles.avatar}/> :
+                    {user?.image ?
+                    <img src={user?.image} alt="Imagem do usuário" className={styles.avatar}/> :
                     <div className={styles.avatar}>
-                        <h2>JB</h2>
+                        <h2>{createInitials(user?.aluno?.nomeCompleto)}</h2>
                     </div>}
                     <div className={styles.dropdown_content}>
                         <p onClick={() => signOut()}>Sair</p>

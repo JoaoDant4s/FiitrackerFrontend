@@ -1,13 +1,12 @@
-import { addDoc, collection, getDoc } from "firebase/firestore";
-import { db } from "../../../firebase-config";
 import Error from "next/error";
+import { createAluno } from "@/services/aluno";
 
 export default async function handler(req, res) {
     const {method} = req
     try{
         switch(method){
             case 'POST':
-                const aluno = await CriarAluno(req.body)
+                const aluno = await createAluno(req.body)
                 if(!aluno){
                     throw new Error("Não foi possível criar o aluno")
                 }
@@ -30,22 +29,3 @@ export default async function handler(req, res) {
         })
     }
 }
-const CriarAluno = async (body) => {
-    const aluno = {
-        nomeCompleto: body.nomeCompleto,
-        telefone: body.telefone,
-        dataNascimento: body.dataNascimento,
-        cpf: body.cpf,
-    }
-    const alunoRef = await addDoc(collection(db, "aluno"), aluno)
-    const alunoSnap = await getDoc(alunoRef)
-    let alunoCriado = {
-        nomeCompleto: alunoSnap.data().nomeCompleto,
-        telefone: alunoSnap.data().telefone,
-        dataNascimento: alunoSnap.data().dataNascimento,
-        cpf: alunoSnap.data().cpf,
-        id: alunoSnap.id,
-    }
-    return alunoCriado
-}
-  

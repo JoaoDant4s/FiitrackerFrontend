@@ -43,7 +43,7 @@ export const NovoAluno = () => {
                 role: 'user',
                 pontos: 0,
                 multiplicador: 1.0,
-                foto,
+                image: "",
                 historicoRecompensas: []
             })
         })
