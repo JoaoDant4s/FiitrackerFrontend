@@ -15,7 +15,10 @@ export const HeaderNav = ({user}) => {
     }
     return(
         <div className={styles.header}>
-            <h1 onClick={() => handleNavigate()} className={styles.logo}>FitTracker</h1>
+            <div>
+                <h1 onClick={() => handleNavigate()} className={styles.logo}>FitTracker</h1>
+                {user?.role === "user" && <span>Recompensas</span>}
+            </div>
             {user?.role === "user" && 
             <div className={styles.container_avatar}>
                 <RiCopperCoinLine className={styles.coin}/>
@@ -28,6 +31,7 @@ export const HeaderNav = ({user}) => {
                     </div>}
                     <div className={styles.dropdown_content}>
                         <p onClick={() => signOut()}>Sair</p>
+                        <p>Histórico</p>
                     </div>
                 </div>
             </div>}

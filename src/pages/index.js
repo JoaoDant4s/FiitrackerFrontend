@@ -17,7 +17,7 @@ export default function Home() {
   const onSubmit = (async (data) => {
     console.log(data)
     const res = await signIn('credentials', {
-      email: data.email,
+      username: data.username,
       senha: data.senha,
       redirect: false
     })
@@ -41,16 +41,16 @@ export default function Home() {
             <h1 className={styles.title_logo}>FitTracker</h1>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
               <div className={styles.input_block}>
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">Usuário:</label>
                 <input 
-                  type="email" 
-                  placeholder=" Digite seu email" 
-                  {...register("email")}
+                  type="text" 
+                  placeholder=" Digite seu nome de usuário" 
+                  {...register("username")}
                   autoComplete='off'
                   spellCheck="false"
                   className={styles.input}
                 />
-                {errors.email && <span className={styles.errors}>{errors.email.message}</span>}
+                {errors.username && <span className={styles.errors}>{errors.username.message}</span>}
               </div>
               <div className={styles.input_block}>
                 <label htmlFor="senha">Senha:</label>
@@ -65,10 +65,10 @@ export default function Home() {
                 {error && <span className={styles.errors}>{error}</span>}
               </div>
               <button type="submit" className={styles.button_submit}>Entrar</button>
-              <div className={styles.social_container}> 
+              {/* <div className={styles.social_container}> 
                 <p>Ou</p>
                 <button onClick={() => signIn('github')}>Github</button>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

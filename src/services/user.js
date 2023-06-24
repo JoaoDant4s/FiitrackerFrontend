@@ -1,8 +1,8 @@
 import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"
 import { db } from "../../firebase-config"
 
-export async function getUserByEmail(email){
-    const userQuery = query(collection(db, "usuario"), where("email", "==", email))
+export async function getUserByEmail(username){
+    const userQuery = query(collection(db, "usuario"), where("username", "==", username))
 
     const userSnapshot = await getDocs(userQuery)
     let user
@@ -16,9 +16,9 @@ export async function getUserByEmail(email){
     return user ? user : ""
 }
 
-export async function checkUser(email, senha){
+export async function checkUser(username, senha){
     senha = hashPassword(senha)
-    const userQuery = query(collection(db, "usuario"), where("email", "==", email), where("senha", "==", senha))
+    const userQuery = query(collection(db, "usuario"), where("username", "==", username), where("senha", "==", senha))
 
     const userSnapshot = await getDocs(userQuery)
     let user
@@ -32,6 +32,7 @@ export async function checkUser(email, senha){
 }
 
 export async function createUser(user){
+    console.log("entrou na funcao de criar no firebase")
     user.aluno = doc(db, `aluno/${user.aluno.id}`)
     user.senha = hashPassword(user.senha)
     const userRef = await addDoc(collection(db, "usuario"), user)

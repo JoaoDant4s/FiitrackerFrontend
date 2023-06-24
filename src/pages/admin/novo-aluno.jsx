@@ -8,14 +8,12 @@ import { createAlunoFormSchema } from "@/schema/novoAlunoSchema";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 export const NovoAluno = (props) => {
     const { register, handleSubmit, formState: { errors }} = useForm({
         resolver: zodResolver(createAlunoFormSchema)
     })
 
     const onSubmit = (async (data) => {
-        console.log(data)
         let pessoaCriada
         let usuarioCriado
         await fetch("http://localhost:8080/people", {
@@ -50,7 +48,7 @@ export const NovoAluno = (props) => {
                 body: JSON.stringify({
                     username: data.username,
                     password: data.senha,
-                    pontos: 100,
+                    pontos: 700,
                     pessoa: {
                         id: pessoaCriada.id
                     }
@@ -62,6 +60,41 @@ export const NovoAluno = (props) => {
                 
                 console.log(typeof(err))
             })
+        }
+        if(usuarioCriado){
+            //criar usuario e pessoa no firebase
+            let responseAluno = await fetch("http://localhost:3000/api/aluno", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nomeCompleto: data.nome,
+                    dataNascimento: moment(data.dataNascimento).format('DD-MM-YYYY'),
+                    cpf: data.cpf,
+                    telefone: data.telefone
+                })
+            })
+            responseAluno = await responseAluno.json()
+            console.log("aluno criado no firebase: ", responseAluno)
+            let responseUsuario = await fetch("http://localhost:3000/api/usuario", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: data.username,
+                    senha: data.senha,
+                    aluno: responseAluno.aluno,
+                    role: 'user',
+                    pontos: 700,
+                    multiplicador: 1.0,
+                    image: "",
+                    historicoRecompensas: []
+                })
+            })
+
+            console.log("Usuario criado no firebase: ", responseUsuario)
         }
     })
     
