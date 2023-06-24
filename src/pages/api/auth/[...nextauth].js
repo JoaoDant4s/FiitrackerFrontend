@@ -16,16 +16,17 @@ export default NextAuth({
             name: "NextAuthCredentials",
             credentials: {},
             async authorize(credentials) {
-                const {email, senha} = credentials
-                console.log(email, senha)
+                const {username, senha} = credentials
+                console.log(username, senha)
 
-                const user = await checkUser(email, senha)
+                const user = await checkUser(username, senha)
 
                 if(!user){
-                    throw new Error("E-mail ou senha incorretos")
+                    throw new Error("Usuário ou senha incorretos")
                 }
                 console.log("dentro do nextAuth")
                 console.log(user)
+                user.name = user.username
                 return user
             }
         })

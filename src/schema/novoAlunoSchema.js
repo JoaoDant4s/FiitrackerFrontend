@@ -7,6 +7,10 @@ export const createAlunoFormSchema = z.object({
     nome: z.string().nonempty("O nome é obrigatório").trim(),
     dataNascimento: z.string().nonempty("A data é obrigatória"),
     cpf: z.string().nonempty("O CPF é obrigatório").transform(cpf => {
+        const regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/
+        if(regex.exec(cpf)){
+            return cpf
+        }
         return cpf.trim().replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
     }).refine((cpf) => {
         return validate(cpf)

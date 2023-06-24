@@ -63,8 +63,23 @@
 .dropdown:hover .dropdown_content {
     display: block;
 }
-.dropdown_content > p{
+.dropdown_content > p:not(:last-child){
     text-align: center;
     cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.header > div:not(:last-child) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+.header > div:not(:last-child) > span {
+    color: white;
+    cursor: pointer;
+}
+.header > div:not(:last-child) > span:hover {
+    font-weight: bold;
 }
 

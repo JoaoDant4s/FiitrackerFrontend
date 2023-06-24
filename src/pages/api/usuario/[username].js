@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     try{
         switch(method){
             case 'GET':
-                const user = await getUserByEmail(req.query.email)
+                const user = await getUserByEmail(req.query.username)
                 console.log("aq n deu erro")
                 res.status(200).json(user)
                 break;

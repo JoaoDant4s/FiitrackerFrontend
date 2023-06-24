@@ -6,6 +6,7 @@ export default async function handler(req, res) {
         switch(method){
             case 'POST':
                 const usuario = await createUser(req.body)
+                console.log("Dentro da apiNExt", usuario)
                 if(!usuario){
                     throw new Error("Não foi possível criar o aluno")
                 }
