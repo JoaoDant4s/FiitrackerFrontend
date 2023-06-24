@@ -6,7 +6,6 @@ import { signOut } from 'next-auth/react';
 import { createInitials } from '@/helpers/createInitials';
 
 export const HeaderNav = ({user}) => {
-    console.log(user?.image)
     const handleNavigate = () => {
         if(user.role === "admin"){
             router.push(`/admin`)
@@ -24,7 +23,7 @@ export const HeaderNav = ({user}) => {
                 <div className={styles.dropdown}>
                     {user?.image ?
                     <img src={user?.image} alt="Imagem do usuário" className={styles.avatar}/> :
-                    <div className={styles.avatar}>
+                    <div className={styles.avatar}> 
                         <h2>{createInitials(user?.aluno?.nomeCompleto)}</h2>
                     </div>}
                     <div className={styles.dropdown_content}>
