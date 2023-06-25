@@ -1,8 +1,21 @@
 .container_aluno {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border: 1px solid gray;
+    color: white;
+    background-color: #2C3E50;
+    border-radius: 5px;
+    width: 90%;
+    font-size: 14px;
     margin-bottom: 15px;
+    padding: 10px 0;
+}
+
+.container_aluno > h2 {
+    width: 30%;
+}
+
+.container_aluno > h2:nth-child(2) {
+    text-align: right;
 }

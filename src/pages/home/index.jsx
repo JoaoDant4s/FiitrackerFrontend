@@ -15,6 +15,7 @@ export const Home = ({authUser}) => {
             <div className="container_page_with_header">
                 <h1>Home page</h1>
                 <h1>{user?.aluno?.nomeCompleto}</h1>
+                
             </div>
         </>
     )

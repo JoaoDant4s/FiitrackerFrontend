@@ -2,6 +2,7 @@ import HeaderNav from "@/components/header";
 import Head from "next/head";
 import styles from '../../styles/CadastrarCheckin.module.css'
 import { CelulaAluno } from "@/components/celulaAluno";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export const CadastrarCheckin = ({alunos}) => {
     return(
@@ -12,7 +13,10 @@ export const CadastrarCheckin = ({alunos}) => {
             <HeaderNav isAdmin={true}/>
             <div className="container_page_with_header">
                 <div className={styles.card}>
-                    <h1>Buscar aluno</h1>
+                    <div className={styles.search}>
+                        <input className={styles.input_busca} placeholder="nome do usuario" />
+                        <MagnifyingGlassIcon className={styles.icon_search}></MagnifyingGlassIcon>
+                    </div>
                     <div className={styles.container_list}>
                         {alunos && alunos.map(aluno => (
                             <CelulaAluno key={aluno.id} aluno={aluno}/>
