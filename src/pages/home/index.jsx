@@ -29,7 +29,7 @@ export const Home = ({authUser}) => {
                   })}
                 </div>
                 <div>
-                  <h1>{user?.multiplicador}x</h1>
+                  <h1>{user?.multiplicador && `${user.multiplicador}x`}</h1>
                 </div>
               </div>
                 {/* <h1>Home page</h1>

@@ -17,7 +17,9 @@ export const HeaderNav = ({user}) => {
         <div className={styles.header}>
             <div>
                 <h1 onClick={() => handleNavigate()} className={styles.logo}>FitTracker</h1>
-                {user?.role === "user" && <span>Recompensas</span>}
+                {user?.role === "user" && (
+                    <span onClick={() => router.push("/recompensas")}>Recompensas</span>
+                )}
             </div>
             {user?.role === "user" && 
             <div className={styles.container_avatar}>
