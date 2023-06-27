@@ -22,21 +22,23 @@ export const HeaderNav = ({user}) => {
                 )}
             </div>
             {user?.role === "user" && 
-            <div className={styles.container_avatar}>
-                <RiCopperCoinLine className={styles.coin}/>
-                <h2>{user.pontos}</h2>
-                <div className={styles.dropdown}>
-                    {user?.image ?
-                    <img src={user?.image} alt="Imagem do usuário" className={styles.avatar}/> :
-                    <div className={styles.avatar}> 
-                        <h2>{createInitials(user?.aluno?.nomeCompleto)}</h2>
-                    </div>}
-                    <div className={styles.dropdown_content}>
-                        <p onClick={() => signOut()}>Sair</p>
-                        <p>Histórico</p>
+                <div className={styles.container_avatar}>
+                    <RiCopperCoinLine className={styles.coin}/>
+                    <h2>{user.pontos}</h2>
+                    <div className={styles.dropdown}>
+                        {user?.image ?
+                            <img src={user?.image} alt="Imagem do usuário" className={styles.avatar}/> :
+                            <div className={styles.avatar}> 
+                                <h2>{createInitials(user?.pessoa?.nomeCompleto)}</h2>
+                            </div>
+                        }
+                        <div className={styles.dropdown_content}>
+                            <p onClick={() => signOut()}>Sair</p>
+                            <p>Histórico</p>
+                        </div>
                     </div>
                 </div>
-            </div>}
+            }
         </div>
     )
 }

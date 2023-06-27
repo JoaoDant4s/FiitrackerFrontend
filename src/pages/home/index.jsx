@@ -50,11 +50,16 @@ export const getServerSideProps = async (context) => {
         }
       }
     }
-    let user = await fetch(`http://localhost:3000/api/usuario/${session.user.name}`, {
+    let user
+    await fetch(`http://localhost:8080/user/username?username=${session.user.name}`, {
       method: 'GET',
       headers: {
-          'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json',
+      }
+    }).then(async (res) => {
+      return await res.json()
+    }).then((json) => {
+      user = json
     })
 
     // let userAPI = await fetch(`http://localhost:8080/user/username?username=${}`, {
@@ -64,9 +69,7 @@ export const getServerSideProps = async (context) => {
     //   },
     // })
 
-    user = await user.json()
-    console.log("resposta do fetch do user")
-    console.log(user)
+    console.log("Usuario recebido:")
     // if(!user){
     //   let responseAluno = await fetch("http://localhost:3000/api/aluno", {
     //     method: 'POST',

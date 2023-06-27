@@ -49,6 +49,7 @@ export const NovoAluno = (props) => {
                     username: data.username,
                     password: data.senha,
                     pontos: 700,
+                    multiplicador: 1.0,
                     pessoa: {
                         id: pessoaCriada.id
                     }
