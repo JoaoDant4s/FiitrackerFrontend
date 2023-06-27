@@ -1,29 +1,47 @@
 import HeaderNav from "@/components/header";
 import Head from "next/head";
 import styles from '../../styles/CadastrarCheckin.module.css'
+import { useState } from 'react';
 import { CelulaAluno } from "@/components/celulaAluno";
 
 export const CadastrarCheckin = ({alunos}) => {
+    const [filtroNome, setFiltroNome] = useState('');
+  
+    const handleFiltroNomeChange = (event) => {
+      setFiltroNome(event.target.value);
+    };
+  
+    const alunosFiltrados = alunos.filter(aluno =>
+      aluno.pessoa?.nomeCompleto.toLowerCase().includes(filtroNome.toLowerCase())
+    );
+  
     return(
-        <>  
-            <Head>
-                <title>Cadastrar Checkin</title>
-            </Head>
-            <HeaderNav isAdmin={true}/>
-            <div className="container_page_with_header">
-                <div className={styles.card}>
-                    <h1>Buscar aluno</h1>
-                    <div className={styles.container_list}>
-                        {alunos && alunos.map(aluno => (
-                            <CelulaAluno key={aluno.id} aluno={aluno}/>
-                        ))}
-                    </div>
-                </div>
+      <>  
+        <Head>
+          <title>Cadastrar Checkin</title>
+        </Head>
+        <HeaderNav isAdmin={true}/>
+        <div className="container_page_with_header">
+          <div className={styles.card}>
+            <h1>Buscar aluno</h1>
+            <div>
+              <input
+                type="text"
+                value={filtroNome}
+                onChange={handleFiltroNomeChange}
+                placeholder="Digite um nome"
+              />
             </div>
-        </>
-    )
-}
-
+            <div className={styles.container_list}>
+              {alunosFiltrados.map(aluno => (
+                <CelulaAluno key={aluno.id} aluno={aluno}/>
+              ))}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
 
 export const getServerSideProps = async () => {
     let users;
