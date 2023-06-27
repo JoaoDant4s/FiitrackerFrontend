@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from '../../styles/CadastrarCheckin.module.css'
 import { useState } from 'react';
 import { CelulaAluno } from "@/components/celulaAluno";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export const CadastrarCheckin = ({alunos}) => {
     const [filtroNome, setFiltroNome] = useState('');

@@ -188,7 +188,7 @@ export const NovoAluno = (props) => {
                                     htmlFor="username"
                                     className={styles.label}
                                 >
-                                    Username:
+                                    Nome do usuário:
                                 </label>
                                 <input
                                     className={styles.input}

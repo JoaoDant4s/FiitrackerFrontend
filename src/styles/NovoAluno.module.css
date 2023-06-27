@@ -1,33 +1,48 @@
-
-
 .card{
-    height: 500px;
+    background-color: #FFF;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    border-radius: 10px;
+    width: 50%;
     justify-content: center;
-    width: 60%;
+    align-items: center;
+    padding: 20px 10px;
 }
 
 .input_container {
     display: flex;
     width: 80%;
-    margin-bottom: 20px;
+    margin: 10px 0 10px 0;
+}
+
+.label {
+    margin-bottom: 5px;
 }
 
 .input {
     height: 30px;
     min-width: 100px;
     border: 1px solid gray;
+    padding: 5px 10px;
     border-radius: 5px;
 }
 
 .button_submit {
+    margin-top: 20px;
     padding: 10px 40px;
-    background-color: #2C3E50;
     color: white;
+    background-color: #6c63ff;
+    cursor: pointer;
     font-weight: bold;
     border: none;
+    border-radius: 5px;
+}
+
+.button_submit:hover {
+    border: none;
+    color: white;
+    background-color: #6f2fff;
+    transition: 0.5s;
     border-radius: 5px;
 }
 

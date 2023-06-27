@@ -59,6 +59,7 @@
     height: 30px;
     min-width: 100px;
     border: 1px solid gray;
+    padding: 5px 10px;
     border-radius: 5px;
 }
 
@@ -95,5 +96,6 @@
     border: none;
     color: white;
     background-color: #6f2fff;
+    transition: 0.5s;
     border-radius: 5px;
 }

@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from '@/schema/loginSchema'
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
   const [error, setError] = useState("")
@@ -24,6 +26,8 @@ export default function Home() {
 
     if(res.status === 200){
       router.push("/home")
+    } else {
+      toast.error("Credenciais inválidas")
     }
 
     setError(res.error)
@@ -34,6 +38,18 @@ export default function Home() {
         <title>Fittracker</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ToastContainer 
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
       <main className={styles.container_page}>
         <div className={styles.card}>
           <div className={styles.image}></div>
@@ -53,16 +69,14 @@ export default function Home() {
                 {errors.username && <span className={styles.errors}>{errors.username.message}</span>}
               </div>
               <div className={styles.input_block}>
-                <label htmlFor="senha">Senha:</label>
                 <input 
                   type="password" 
-                  placeholder=" Digite sua senha"
+                  placeholder="Senha"
                   {...register("senha")}
                   autoComplete='off'
                   className={styles.input} 
                 />
                 {errors.senha && <span className={styles.errors}>{errors.senha.message}</span>}
-                {error && <span className={styles.errors}>{error}</span>}
               </div>
               <button type="submit" className={styles.button_submit}>Entrar</button>
               {/* <div className={styles.social_container}> 
