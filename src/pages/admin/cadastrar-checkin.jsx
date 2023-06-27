@@ -1,16 +1,32 @@
 import HeaderNav from "@/components/header";
 import Head from "next/head";
 import styles from '../../styles/CadastrarCheckin.module.css'
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from "@/context/UserContext"
+
 import { CelulaAluno } from "@/components/celulaAluno";
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export const CadastrarCheckin = ({alunos}) => {
     const [filtroNome, setFiltroNome] = useState('');
+    const { user, setUser } = useContext(UserContext)
   
     const handleFiltroNomeChange = (event) => {
       setFiltroNome(event.target.value);
     };
+
+    const handleCelulaAlunoClick = async (id) => {
+        await fetch(`http://localhost:8080/checkin/${id}`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json;charset=UTF-8'
+            },
+            body: {
+                userId: id
+            }
+        })
+        console.log("oi")
+    }
   
     const alunosFiltrados = alunos.filter(aluno =>
       aluno.pessoa?.nomeCompleto.toLowerCase().includes(filtroNome.toLowerCase())
@@ -25,24 +41,27 @@ export const CadastrarCheckin = ({alunos}) => {
         <div className="container_page_with_header">
           <div className={styles.card}>
             <h1>Buscar aluno</h1>
-            <div>
-              <input
+            <div className={styles.search}>
+                <input 
+                className={styles.input_busca} 
                 type="text"
                 value={filtroNome}
                 onChange={handleFiltroNomeChange}
-                placeholder="Digite um nome"
-              />
+                placeholder="Digite um nome" />
+                <MagnifyingGlassIcon className={styles.icon_search}></MagnifyingGlassIcon>
             </div>
             <div className={styles.container_list}>
               {alunosFiltrados.map(aluno => (
-                <CelulaAluno key={aluno.id} aluno={aluno}/>
+                <button className={styles.aluno_card} key={aluno.id}>                
+                    <CelulaAluno aluno={aluno} onClick={handleCelulaAlunoClick(aluno.id)}/>
+                </button>
               ))}
             </div>
           </div>
         </div>
       </>
     );
-  };
+};
 
 export const getServerSideProps = async () => {
     let users;

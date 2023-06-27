@@ -46,5 +46,12 @@
     width: 90%;
     margin-bottom: 20px;
     border: 1px solid rgb(86, 86, 86);
+}
 
+.aluno_card {
+    margin-bottom: 20px;
+    width: 90%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
