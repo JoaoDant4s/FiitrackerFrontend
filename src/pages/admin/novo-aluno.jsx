@@ -52,7 +52,8 @@ export const NovoAluno = (props) => {
                     multiplicador: 1.0,
                     pessoa: {
                         id: pessoaCriada.id
-                    }
+                    },
+                    roles: ["admin"]
                 })
             }).then(async (res) => {
                 usuarioCriado = await res.json()

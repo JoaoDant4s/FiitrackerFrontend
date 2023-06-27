@@ -102,6 +102,7 @@
 
 .products_container {
     display: flex;
+    min-height: 250px;
     flex-wrap: wrap;
     gap: 25px;
 }

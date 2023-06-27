@@ -2,15 +2,15 @@ import styles from "../../styles/Home.module.css"
 import HeaderNav from "@/components/header"
 import { UserContext } from "@/context/UserContext"
 import { obterUltimosCincoDiasUteis } from "@/helpers/weekDays"
-import { getSession, signOut } from "next-auth/react"
+import { getSession, signOut, useSession } from "next-auth/react"
 import { useContext, useEffect, useState } from 'react'
 
 export const Home = ({authUser}) => {
     const { user, setUser } = useContext(UserContext)
-    const [ ultimosCincoDiasUteis ] = useState(obterUltimosCincoDiasUteis())
+    const [ ultimosCincoDiasUteis ] = useState(obterUltimosCincoDiasUteis().reverse())
+
     useEffect(() => {
       setUser(authUser)
-      console.log(authUser)
     }, [])
     return (
         <>
@@ -24,7 +24,7 @@ export const Home = ({authUser}) => {
                       <p
                         className={styles.circlesgreen}
                         key={dia}
-                      ></p>
+                      >{dia}</p>
                     )
                   })}
                 </div>
