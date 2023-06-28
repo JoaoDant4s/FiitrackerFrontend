@@ -18,15 +18,28 @@ export default NextAuth({
             async authorize(credentials) {
                 const {username, senha} = credentials
                 console.log(username, senha)
-
-                const user = await checkUser(username, senha)
-
-                if(!user){
+                let user
+                const userFirebase = await checkUser(username, senha)
+                console.log("userFirebase", userFirebase)
+                if(!userFirebase){
                     throw new Error("Usuário ou senha incorretos")
                 }
-                console.log("dentro do nextAuth")
-                console.log(user)
-                user.name = user.username
+                
+                await fetch(`http://localhost:8080/user/username?username=${userFirebase.username}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then(async (res) => {
+                    return await res.json()
+                }).then((json) => {
+                    user = {
+                        id: json.id,
+                        name: json.username
+                    }
+                    console.log("user API final", user)
+                })
+                .catch((err) => console.log(err))
                 return user
             }
         })

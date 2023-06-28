@@ -1,20 +1,101 @@
 
 
-.container_produto{
+.container_item{
     display: flex;
-    width: 100%;
-    background-color: gray;
-    margin-bottom: 25px;
+    width: 250px;
+    min-height: 290px;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #BBBBBB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container_produto {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .container_produto > img{
     display: flex;
+    max-height: 120px;
     width: 100px;
-    height: 100px;
+    align-self: center;
 }
 
 .nome_desc {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
 
+.nome_desc > p {
+    margin-bottom: 20px;
+}
+
+.nome_desc > div > div > h3 {
+    color: #2C3E50;
+    margin-top: 1px;
+    margin-right: 10px;
+}
+
+.nome_desc > div > div  {
+    display: flex;
+    align-items: center;
+}
+
+.nome_desc > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.coin{
+    color: #2C3E50;
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+}
+
+.delete_button {
+    background-color: #D11A2A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.delete_button:hover {
+    background-color: #A11A2A;
+}
+
+.redeem_button {
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.redeem_button:hover {
+    background-color: #6f2fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: 0.5s;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.redeem_button_disabled {
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    pointer-events: none;
+    opacity: 0.6;
+}

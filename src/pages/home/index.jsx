@@ -2,15 +2,16 @@ import styles from "../../styles/Home.module.css"
 import HeaderNav from "@/components/header"
 import { UserContext } from "@/context/UserContext"
 import { obterUltimosCincoDiasUteis } from "@/helpers/weekDays"
-import { getSession, signOut } from "next-auth/react"
+import { getSession, signOut, useSession } from "next-auth/react"
 import { useContext, useEffect, useState } from 'react'
 
 export const Home = ({authUser}) => {
     const { user, setUser } = useContext(UserContext)
-    const [ ultimosCincoDiasUteis ] = useState(obterUltimosCincoDiasUteis())
+    const [ ultimosCincoDiasUteis ] = useState(obterUltimosCincoDiasUteis().reverse())
+
     useEffect(() => {
-      setUser(authUser)
       console.log(authUser)
+      setUser(authUser)
     }, [])
     return (
         <>
@@ -24,12 +25,12 @@ export const Home = ({authUser}) => {
                       <p
                         className={styles.circlesgreen}
                         key={dia}
-                      ></p>
+                      >{dia}</p>
                     )
                   })}
                 </div>
                 <div>
-                  <h1>{user?.multiplicador}x</h1>
+                  <h1>{user?.multiplicador && `${user.multiplicador}x`}</h1>
                 </div>
               </div>
                 {/* <h1>Home page</h1>
@@ -41,7 +42,7 @@ export const Home = ({authUser}) => {
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)
-    console.log(session)
+    console.log("session", session)
     if(!session){
       return{
         redirect: {
@@ -50,11 +51,16 @@ export const getServerSideProps = async (context) => {
         }
       }
     }
-    let user = await fetch(`http://localhost:3000/api/usuario/${session.user.name}`, {
+    let user
+    await fetch(`http://localhost:8080/user/username?username=${session.user.name}`, {
       method: 'GET',
       headers: {
-          'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json',
+      }
+    }).then(async (res) => {
+      return await res.json()
+    }).then((json) => {
+      user = json
     })
 
     // let userAPI = await fetch(`http://localhost:8080/user/username?username=${}`, {
@@ -64,9 +70,7 @@ export const getServerSideProps = async (context) => {
     //   },
     // })
 
-    user = await user.json()
-    console.log("resposta do fetch do user")
-    console.log(user)
+    console.log("Usuario recebido:")
     // if(!user){
     //   let responseAluno = await fetch("http://localhost:3000/api/aluno", {
     //     method: 'POST',

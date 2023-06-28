@@ -21,6 +21,12 @@
   height: 80px;
   width: 80px;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  -webkit-text-stroke: 1px black;
 }
 
 .bottom_interface{

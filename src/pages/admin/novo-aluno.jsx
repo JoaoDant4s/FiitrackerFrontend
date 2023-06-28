@@ -49,9 +49,11 @@ export const NovoAluno = (props) => {
                     username: data.username,
                     password: data.senha,
                     pontos: 700,
+                    multiplicador: 1.0,
                     pessoa: {
                         id: pessoaCriada.id
-                    }
+                    },
+                    // roles: ["ADMIN", "USER"]
                 })
             }).then(async (res) => {
                 usuarioCriado = await res.json()
@@ -61,6 +63,7 @@ export const NovoAluno = (props) => {
                 console.log(typeof(err))
             })
         }
+        console.log("usuario admin: ", usuarioCriado)
         if(usuarioCriado){
             //criar usuario e pessoa no firebase
             let responseAluno = await fetch("http://localhost:3000/api/aluno", {
