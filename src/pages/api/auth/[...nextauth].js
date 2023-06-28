@@ -40,6 +40,9 @@ export default NextAuth({
                     console.log("user API final", user)
                 })
                 .catch((err) => console.log(err))
+                if(!user.name){
+                    throw new Error("O usuário não foi criado corretamente")
+                }
                 return user
             }
         })

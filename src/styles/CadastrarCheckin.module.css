@@ -10,17 +10,19 @@
 }
 
 .card > h1 {
-    color: white;
+    color: black;
+    height: 50%;
 }
 
 .container_list {
     max-height: 90vh;
     border-radius: 10px;
     width: 100%;
-    overflow: auto;
     display: flex;
+    overflow: auto;
     align-items: center;
     flex-direction: column;
+    height: 300px;
 }
 
 .input_busca {

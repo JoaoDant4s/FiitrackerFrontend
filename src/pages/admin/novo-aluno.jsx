@@ -53,7 +53,11 @@ export const NovoAluno = (props) => {
                     pessoa: {
                         id: pessoaCriada.id
                     },
-                    // roles: ["ADMIN", "USER"]
+                    role: [
+                        {
+                            name: "admin"
+                        }
+                    ]
                 })
             }).then(async (res) => {
                 usuarioCriado = await res.json()
@@ -78,6 +82,7 @@ export const NovoAluno = (props) => {
                     telefone: data.telefone
                 })
             })
+            console.log("responseAluno:", responseAluno)
             responseAluno = await responseAluno.json()
             console.log("aluno criado no firebase: ", responseAluno)
             let responseUsuario = await fetch("http://localhost:3000/api/usuario", {

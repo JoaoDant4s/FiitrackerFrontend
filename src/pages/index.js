@@ -10,7 +10,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
-  const [error, setError] = useState("")
   const router = useRouter()
   const { register, handleSubmit, formState: { errors }} = useForm({
     resolver: zodResolver(loginSchema)
@@ -27,10 +26,8 @@ export default function Home() {
     if(res.status === 200){
       router.push("/home")
     } else {
-      toast.error("Credenciais inválidas")
+      toast.error(res.error)
     }
-
-    setError(res.error)
   })
   return (
     <>
@@ -39,17 +36,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ToastContainer 
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+      />
       <main className={styles.container_page}>
         <div className={styles.card}>
           <div className={styles.image}></div>
