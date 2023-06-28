@@ -10,6 +10,7 @@ export const Home = ({authUser}) => {
     const [ ultimosCincoDiasUteis ] = useState(obterUltimosCincoDiasUteis().reverse())
 
     useEffect(() => {
+      console.log(authUser)
       setUser(authUser)
     }, [])
     return (
@@ -41,7 +42,7 @@ export const Home = ({authUser}) => {
 
 export const getServerSideProps = async (context) => {
     const session = await getSession(context)
-    console.log(session)
+    console.log("session", session)
     if(!session){
       return{
         redirect: {

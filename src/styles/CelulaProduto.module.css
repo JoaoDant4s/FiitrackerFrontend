@@ -70,3 +70,32 @@
 .delete_button:hover {
     background-color: #A11A2A;
 }
+
+.redeem_button {
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.redeem_button:hover {
+    background-color: #6f2fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: 0.5s;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.redeem_button_disabled {
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    pointer-events: none;
+    opacity: 0.6;
+}

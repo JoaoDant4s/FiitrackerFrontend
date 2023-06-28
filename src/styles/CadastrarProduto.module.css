@@ -69,6 +69,7 @@
     color: white;
     background-color: #6f2fff;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 873px){
@@ -106,4 +107,6 @@
     flex-wrap: wrap;
     gap: 25px;
 }
+
+
 

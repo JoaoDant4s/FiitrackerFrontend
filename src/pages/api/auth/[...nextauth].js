@@ -20,7 +20,7 @@ export default NextAuth({
                 console.log(username, senha)
                 let user
                 const userFirebase = await checkUser(username, senha)
-
+                console.log("userFirebase", userFirebase)
                 if(!userFirebase){
                     throw new Error("Usuário ou senha incorretos")
                 }
@@ -33,11 +33,11 @@ export default NextAuth({
                 }).then(async (res) => {
                     return await res.json()
                 }).then((json) => {
-                    console.log(json)
                     user = {
                         id: json.id,
                         name: json.username
                     }
+                    console.log("user API final", user)
                 })
                 .catch((err) => console.log(err))
                 return user

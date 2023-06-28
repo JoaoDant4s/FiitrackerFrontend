@@ -12,10 +12,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const CadastrarProdutos = () => {
-    const [listaProdutos, setListaProdutos] = useState([])
+    const [listaFiltrada, setListaFiltrada] = useState([])
     const [search, setSearch] = useState("")
     const [modalOpen, setModalOpen] = useState(false);
-    const [produtos, setProdutos] = useState()
+    const [produtos, setProdutos] = useState([])
     const { register, handleSubmit, formState: { errors }} = useForm({
         resolver: zodResolver(createRecompensaFormSchema)
     })
@@ -46,12 +46,13 @@ export const CadastrarProdutos = () => {
     };
 
     const filtrarProdutos = (string) => {
+        console.log(string)
         setSearch(string)
-        const listaFiltrada = listaProdutos.filter((recompensa) => {
-            return recompensa.nome.includes(search)
-        })
-        setListaProdutos(listaFiltrada)
-    }
+          const filteredList = produtos.filter((recompensa) => {
+              return recompensa.nome.toLowerCase().includes(search.toLowerCase())
+          })
+          setListaFiltrada(filteredList)
+      }
 
     const onSubmit = async (data) => {
         await fetch("http://localhost:8080/recompensa", {
@@ -167,9 +168,11 @@ export const CadastrarProdutos = () => {
                     </form>                  
                 </Modal>
                 <div className={styles.products_container}>
-                    {produtos && produtos?.map((produto) => (
+                {produtos && search ? listaFiltrada?.map((produto) => (
                         <CelulaProduto produto={produto} key={produto.id}/>
-                    ))}
+                    )) : produtos?.map((produto) => (
+                      <CelulaProduto produto={produto} key={produto.id}/>
+                  ))}
                 </div>
             </div>
         </>

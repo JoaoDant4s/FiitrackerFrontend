@@ -17,11 +17,11 @@ export const HeaderNav = ({user}) => {
         <div className={styles.header}>
             <div>
                 <h1 onClick={() => handleNavigate()} className={styles.logo}>FitTracker</h1>
-                {user?.role === "user" && (
+                {user && (
                     <span onClick={() => router.push("/recompensas")}>Recompensas</span>
                 )}
             </div>
-            {user?.role === "user" && 
+            {user && 
                 <div className={styles.container_avatar}>
                     <RiCopperCoinLine className={styles.coin}/>
                     <h2>{user.pontos}</h2>
